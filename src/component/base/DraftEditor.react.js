@@ -134,7 +134,11 @@ class DraftEditor extends React.Component {
     this._placeholderAccessibilityID = 'placeholder-' + this._editorKey;
     this._latestEditorState = props.editorState;
 
-    this._onBeforeInput = this._buildHandler('onBeforeInput');
+    this._onBeforeInput = (e) => {
+      console.log('before input');
+      this._buildHandler('onBeforeInput')(e);
+    }
+    // this._onBeforeInput = this._buildHandler('onBeforeInput');
     this._onBlur = this._buildHandler('onBlur');
     this._onCharacterData = this._buildHandler('onCharacterData');
     this._onCompositionEnd = this._buildHandler('onCompositionEnd');
@@ -181,6 +185,7 @@ class DraftEditor extends React.Component {
     return (e) => {
       if (!this.props.readOnly) {
         const method = this._handler && this._handler[eventName];
+        eventName === 'onBeforeInput' && console.log(method);
         method && method.call(this, e);
       }
     };

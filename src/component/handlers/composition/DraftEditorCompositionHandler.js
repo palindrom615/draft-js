@@ -43,6 +43,7 @@ let textInputData = '';
 
 var DraftEditorCompositionHandler = {
   onBeforeInput: function(e: SyntheticInputEvent): void {
+    console.log(4)
     textInputData = (textInputData || '') + e.data;
   },
 
@@ -51,6 +52,7 @@ var DraftEditorCompositionHandler = {
    * mode. Continue the current composition session to prevent a re-render.
    */
   onCompositionStart: function(): void {
+    console.log(2)
     stillComposing = true;
   },
 
@@ -69,6 +71,7 @@ var DraftEditorCompositionHandler = {
    * Google Input Tools on Windows 8.1 fires `compositionend` three times.
    */
   onCompositionEnd: function(): void {
+    console.log(3)
     resolved = false;
     stillComposing = false;
     setTimeout(() => {
@@ -84,6 +87,7 @@ var DraftEditorCompositionHandler = {
    * doesn't move, otherwise it will jump back noticeably on re-render.
    */
   onKeyDown: function(e: SyntheticKeyboardEvent): void {
+    console.log(1, resolved, stillComposing, textInputData)
     if (!stillComposing) {
       // If a keydown event is received after compositionend but before the
       // 20ms timer expires (ex: type option-E then backspace, or type A then

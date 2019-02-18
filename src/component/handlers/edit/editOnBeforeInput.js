@@ -75,6 +75,7 @@ function replaceText(
  */
 function editOnBeforeInput(e: SyntheticInputEvent): void {
   var chars = e.data;
+  console.log(chars)
 
   // In some cases (ex: IE ideographic space insertion) no character data
   // is provided. There's nothing to do when this happens.

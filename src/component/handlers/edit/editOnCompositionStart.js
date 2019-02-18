@@ -19,6 +19,7 @@ var EditorState = require('EditorState');
  * allows handling composition input and disables other edit behavior.
  */
 function editOnCompositionStart(e: SyntheticEvent): void {
+  console.log('edit compositionstart')
   this.setMode('composite');
   this.update(
     EditorState.set(this._latestEditorState, {inCompositionMode: true})
